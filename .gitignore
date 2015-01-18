@@ -1,3 +1,7 @@
+# Local data files
+*data/*
+*rdata/*
+
 # History files
 .Rhistory
 

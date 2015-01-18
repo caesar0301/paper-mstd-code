@@ -1,0 +1,3 @@
+library(gstat)
+
+data(wind)

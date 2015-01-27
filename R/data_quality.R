@@ -5,6 +5,7 @@ library(bit64)
 library(dplyr)
 library(tidyr)
 library(plotrix)
+library(omniR)
 
 # Read data
 heatmap <- fread('../data/heatmap.hz.txt', head=F, sep='\t')

@@ -83,12 +83,13 @@ magplot(shour$r, shour$corr, log='xy', col="#fc8d59", pch=21,
         xlab=expression(paste("Spatial lag ", h, " (km)")),
         ylab=expression(rho(h,0)), side=1:4, labels=c(T,T,F,F))
 pl <- fit_truncated_power_law(shour$r, shour$corr, xmax=500, col=cols[1], lwd=4, lty=5)
-text(10, 0.03, bquote(y ~ '~' ~ 0.283 * x^-0.638 * e^{x/365}), col=cols[1], cex=1.5)
+text(10, 0.03, bquote(y ~ '~' ~ 0.854 * x^-0.821 * e^{x/488}), col=cols[1], cex=1.5)
 
 # off-peak hour
 shour <- dplyr::filter(spcor, r >= 0.1 & hour==21)
 points(shour$r, shour$corr, log='xy', col="#67a9cf", pch=22)
 pl <- fit_truncated_power_law(shour$r, shour$corr, xmax=600, col=cols[2], lwd=4, lty=5)
 text(100, 0.15, bquote(y ~ '~' ~ 0.502 * x^-0.421 * e^{x/1611}), col=cols[2], cex=1.5)
-legend(5, 0.01, c("Time 14:00 (peak)", "Time 21:00"), col=rev(cols), pch=c(22, 21), cex=1.5)
+legend(5, 0.01, c("Time 14:00 (peak)", "Time 21:00"), col=cols, pch=c(22, 21), cex=1.5)
 dev.off()
+

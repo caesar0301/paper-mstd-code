@@ -5,6 +5,7 @@ library(movr)
 library(ggplot2)
 library(scales)
 library(parallel)
+library(magicaxis)
 
 filter <- dplyr::filter
 
@@ -100,8 +101,8 @@ shour <- dplyr::filter(spcor, r >= 0.1 & hour==10)
 magplot(shour$r, shour$corr, log='xy', col="#fc8d59", pch=21, xlim=xlim, ylim=ylim,
         xlab=expression(paste("Spatial lag ", h, " (km)")),
         ylab=expression(rho(h,0)), side=1:4, labels=c(T,T,F,F))
-pl <- fit_power_law(shour$r, shour$corr, xmax=10, col=cols[1], lwd=4, lty=5)
-text(1, 0.2, bquote(y ~ '~' ~ 0.039* x^-0.955), col=cols[1], cex=1.5)
+pl <- fit_power_law(shour$r, shour$corr, xmax=5, col=cols[1], lwd=4, lty=5)
+text(1, 0.2, bquote(y ~ '~' ~ 0.039* x^-0.719), col=cols[1], cex=1.5)
 # off-peak hour
 shour <- dplyr::filter(spcor, r >= 0.1 & hour==7)
 points(shour$r, shour$corr, log='xy', col="#67a9cf", pch=22)
@@ -118,12 +119,12 @@ shour <- dplyr::filter(spcor, r >= 0.1 & hour==14)
 magplot(shour$r, shour$corr, log='xy', col="#fc8d59", pch=21, xlim=xlim, ylim=ylim,
         xlab=expression(paste("Spatial lag ", h, " (km)")),
         ylab=expression(rho(h,0)), side=1:4, labels=c(T,T,F,F))
-pl <- fit_power_law(shour$r, shour$corr, xmax=10, col=cols[1], lwd=4, lty=5)
-text(1, 0.2, bquote(y ~ '~' ~ 0.052* x^-0.869), col=cols[1], cex=1.5)
+pl <- fit_power_law(shour$r, shour$corr, xmax=5, col=cols[1], lwd=4, lty=5)
+text(1, 0.2, bquote(y ~ '~' ~ 0.052* x^-0.708), col=cols[1], cex=1.5)
 # off-peak hour
 shour <- dplyr::filter(spcor, r >= 0.1 & hour==21)
 points(shour$r, shour$corr, log='xy', col="#67a9cf", pch=22)
 pl <- fit_power_law(shour$r, shour$corr, xmax=10, col=cols[2], lwd=4, lty=5)
 text(0.3, 0.02, bquote(y ~ '~' ~ 0.035* x^-0.758), col=cols[2], cex=1.5)
-legend(0.15, 0.002, c("Time 14:00 (peak)", "Time 21:00"), col=rev(cols), pch=c(22, 21), cex=1.5)
+legend(0.15, 0.002, c("Time 14:00 (peak)", "Time 21:00"), col=cols, pch=c(22, 21), cex=1.5)
 dev.off()
